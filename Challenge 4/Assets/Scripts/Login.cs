@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 using System.Text.RegularExpressions;
@@ -7,18 +8,28 @@ using System.Text.RegularExpressions;
 public class Login : MonoBehaviour {
 	public GameObject username;
 	public GameObject password;
+    public Button login;
+    public Button register;
 	private string Username;
 	private string Password;
 	private String[] Lines;
 	private string DecryptedPass;
 
+    void Start()
+    {
+        Button loginBTN = login.GetComponent<Button>();
+        Button registerBTN = register.GetComponent<Button>();
+        loginBTN.onClick.AddListener(LoginButton);
+        registerBTN.onClick.AddListener(RegisterButton);
+    }
+
 	public void LoginButton(){
 		bool UN = false;
 		bool PW = false;
 		if (Username != ""){
-			if(System.IO.File.Exists(@"E:/UnityTestFolder/"+Username+".txt")){
+			if(System.IO.File.Exists(@"C:/UnityTestFolder/"+Username+".txt")){
 				UN = true;
-				Lines = System.IO.File.ReadAllLines(@"E:/UnityTestFolder/"+Username+".txt");
+				Lines = System.IO.File.ReadAllLines(@"C:/UnityTestFolder/"+Username+".txt");
 			} else {
 				Debug.LogWarning("Username Invaild");
 			}
@@ -26,7 +37,7 @@ public class Login : MonoBehaviour {
 			Debug.LogWarning("Username Field Empty");
 		}
 		if (Password != ""){
-			if (System.IO.File.Exists(@"E:/UnityTestFolder/"+Username+".txt")){
+			if (System.IO.File.Exists(@"C:/UnityTestFolder/"+Username+".txt")){
 				int i = 1;
 				foreach(char c in Lines[2]){
 					i++;
@@ -48,7 +59,7 @@ public class Login : MonoBehaviour {
 			username.GetComponent<InputField>().text = "";
 			password.GetComponent<InputField>().text = "";	
 			print ("Login Sucessful");
-			Application.LoadLevel("Start Menu");
+            SceneManager.LoadScene(2);
 		}
 	}
 	// Update is called once per frame
@@ -65,5 +76,11 @@ public class Login : MonoBehaviour {
 		}
 		Username = username.GetComponent<InputField>().text;
 		Password = password.GetComponent<InputField>().text;	
+
 	}
+
+    public void RegisterButton()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

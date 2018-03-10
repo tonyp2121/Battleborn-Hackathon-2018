@@ -5,7 +5,7 @@ public class LevelManager : MonoBehaviour {
 	public Transform mainMenu, optionsMenu;
 
 	public void LoadScene(string name){
-		Application.LoadLevel(name);
+
 	}
 	public void QuitGame(){
 		Application.Quit();
