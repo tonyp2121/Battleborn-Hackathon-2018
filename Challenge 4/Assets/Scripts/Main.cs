@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour {
 
+    public float zoomSpeed = 0.5f;
+
     public Image[] Images;
     public int imageCount = 12;
     public int currentMap = 0;
@@ -25,8 +27,33 @@ public class Main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.touchCount == 2)
+        {
+            // Store both touches.
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            // Find the position in the previous frame of each touch.
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            // Find the magnitude of the vector (the distance) between the touches in each frame.
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+            // Find the difference in the distances between each frame.
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+            // ... change the canvas size based on the change in distance between the touches.
+            Images[currentMap].rectTransform.localScale += Vector3.one * deltaMagnitudeDiff * zoomSpeed;
+
+            // Make sure the canvas size never drops below 0.1
+            if(Images[currentMap].rectTransform.localScale.magnitude < 1f)
+            {
+                Images[currentMap].rectTransform.localScale = Vector3.one;
+            }
+        }
+    }
 
     void NextMap()
     {
