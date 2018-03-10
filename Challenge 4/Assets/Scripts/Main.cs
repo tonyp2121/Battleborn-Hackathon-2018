@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
 
-    public float zoomSpeed = 0.1f;
+    public float zoomSpeed = 2f;
+
+    public static Main Instance { set; get; }
+    public float latitude;
+    public float longitude;
 
     public Image[] Images;
     public int imageCount = 12;
@@ -15,6 +21,7 @@ public class Main : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        Instance = this;
         for (int i = 1; i < imageCount; i++)
         {
             var tempColor = Images[i].color;
@@ -23,10 +30,41 @@ public class Main : MonoBehaviour {
         }
         nextMap.onClick.AddListener(NextMap);
         previousMap.onClick.AddListener(PreviousMap);
+        if(!Debug.isDebugBuild)
+            StartCoroutine(StartLocationServices());
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private IEnumerator StartLocationServices()
+    {
+        if (!Input.location.isEnabledByUser)
+        {
+            SceneManager.LoadScene(3);
+            yield break;
+        }
+
+        Input.location.Start();
+        int maxWait = 20;
+
+        while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
+        {
+               yield return new WaitForSeconds(1);
+        }
+
+        if(maxWait <= 0 || Input.location.status == LocationServiceStatus.Failed)
+        {
+            yield break;
+        }
+
+        latitude = Input.location.lastData.latitude;
+        longitude = Input.location.lastData.longitude;
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        latitude = Input.location.lastData.latitude;
+        longitude = Input.location.lastData.longitude;
+
         if (Input.touchCount == 2)
         {
             // Store both touches.
@@ -50,10 +88,10 @@ public class Main : MonoBehaviour {
             // Make sure the canvas size never drops below 0.1
             if(Images[currentMap].rectTransform.localScale.magnitude < 1f)
             {
-                Images[currentMap].rectTransform.localScale = Vector2.one;
+                Images[currentMap].rectTransform.localScale = Vector3.one;
             }
             if(Images[currentMap].rectTransform.localScale.magnitude > 5f){
-                Images[currentMap].rectTransform.localScale = new Vector2 (5f, 5f);
+                Images[currentMap].rectTransform.localScale = new Vector3 (5f, 5f, 5f);
             }
         }
     }
