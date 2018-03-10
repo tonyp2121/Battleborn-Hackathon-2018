@@ -83,7 +83,7 @@ public class Main : MonoBehaviour {
             float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
             // ... change the canvas size based on the change in distance between the touches.
-            Images[currentMap].rectTransform.localScale += Vector3.one * deltaMagnitudeDiff * zoomSpeed;
+            Images[currentMap].rectTransform.localScale -= Vector3.one * deltaMagnitudeDiff * zoomSpeed;
 
             // Make sure the canvas size never drops below 0.1
             if(Images[currentMap].rectTransform.localScale.magnitude < 1f)
