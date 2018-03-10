@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
 
-    public float zoomSpeed = .5f;
+    public float zoomSpeed = .1f;
 
     public static Main Instance { set; get; }
     public float latitude;
