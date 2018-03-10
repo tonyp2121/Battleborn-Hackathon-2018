@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Register Scene.unity
     guid: a862728bee2dac340a3c6258eb638026
+  - enabled: 1
+    path: Assets/Main Scene.unity
+    guid: 6d1cd5f188a8f2643bdf9b26045043d2
