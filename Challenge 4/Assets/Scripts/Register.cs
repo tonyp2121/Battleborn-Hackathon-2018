@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 using System.Text.RegularExpressions;
@@ -9,6 +10,7 @@ public class Register : MonoBehaviour {
 	public GameObject email;
 	public GameObject password;
 	public GameObject confPassword;
+    public Button registerButton;
 	private string Username;
 	private string Email;
 	private string Password;
@@ -19,6 +21,12 @@ public class Register : MonoBehaviour {
 								   "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
 								   "1","2","3","4","5","6","7","8","9","0","_","-"};
 	
+    void Start()
+    {
+        Button registerBTN = registerButton.GetComponent<Button>();
+        registerButton.onClick.AddListener(RegisterButton);
+    }
+
 	public void RegisterButton(){
 		bool UN = false;
 		bool EM = false;
@@ -26,7 +34,7 @@ public class Register : MonoBehaviour {
 		bool CPW = false;
 
 		if (Username != ""){
-			if (!System.IO.File.Exists(@"E:/UnityTestFolder/"+Username+".txt")){
+			if (!System.IO.File.Exists(@"C:/UnityTestFolder/"+Username+".txt")){
 				UN = true;
 			} else {
 				Debug.LogWarning("Username Taken");
@@ -83,12 +91,13 @@ public class Register : MonoBehaviour {
 				Password += Encrypted.ToString();
 			}
 			form = (Username+Environment.NewLine+Email+Environment.NewLine+Password);
-			System.IO.File.WriteAllText(@"E:/UnityTestFolder/"+Username+".txt", form);
+			System.IO.File.WriteAllText(@"C:/UnityTestFolder/" + Username+".txt", form);
 			username.GetComponent<InputField>().text = "";
 			email.GetComponent<InputField>().text = "";
 			password.GetComponent<InputField>().text = "";
 			confPassword.GetComponent<InputField>().text = "";
 			print ("Registration Complete");
+            SceneManager.LoadScene(0);
 		}
 
 	}

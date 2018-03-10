@@ -17,10 +17,8 @@ public class Login : MonoBehaviour {
 
     void Start()
     {
-        Button loginBTN = login.GetComponent<Button>();
-        Button registerBTN = register.GetComponent<Button>();
-        loginBTN.onClick.AddListener(LoginButton);
-        registerBTN.onClick.AddListener(RegisterButton);
+        login.onClick.AddListener(LoginButton);
+        register.onClick.AddListener(RegisterButton);
     }
 
 	public void LoginButton(){
