@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour {
 
-    public float zoomSpeed = 0.5f;
+    public float zoomSpeed = 0.1f;
 
     public Image[] Images;
     public int imageCount = 12;
@@ -50,7 +50,10 @@ public class Main : MonoBehaviour {
             // Make sure the canvas size never drops below 0.1
             if(Images[currentMap].rectTransform.localScale.magnitude < 1f)
             {
-                Images[currentMap].rectTransform.localScale = Vector3.one;
+                Images[currentMap].rectTransform.localScale = Vector2.one;
+            }
+            if(Images[currentMap].rectTransform.localScale.magnitude > 5f){
+                Images[currentMap].rectTransform.localScale = new Vector2 (5f, 5f);
             }
         }
     }
