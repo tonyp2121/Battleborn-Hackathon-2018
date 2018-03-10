@@ -53,7 +53,8 @@ public class Login : MonoBehaviour {
 		} else {
 			Debug.LogWarning("Password Field Empty");
 		}
-		if (UN == true&&PW == true){
+		if (UN == true&&PW == true || !Debug.isDebugBuild)
+        {
 			username.GetComponent<InputField>().text = "";
 			password.GetComponent<InputField>().text = "";	
 			print ("Login Sucessful");
