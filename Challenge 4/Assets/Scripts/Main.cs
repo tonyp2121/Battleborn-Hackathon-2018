@@ -32,15 +32,17 @@ public class Main : MonoBehaviour {
         }
         nextMap.onClick.AddListener(NextMap);
         previousMap.onClick.AddListener(PreviousMap);
-        if(!Debug.isDebugBuild)
+        if (!Debug.isDebugBuild)
+        {
             StartCoroutine(StartLocationServices());
+        }
     }
 
     private IEnumerator StartLocationServices()
     {
         if (!Input.location.isEnabledByUser)
         {
-            SceneManager.LoadScene(3);
+            Debug.Log("user hasnt enabled gps");
             yield break;
         }
 
@@ -49,7 +51,8 @@ public class Main : MonoBehaviour {
 
         while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {
-               yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
+            maxWait--;
         }
 
         if(maxWait <= 0 || Input.location.status == LocationServiceStatus.Failed)
@@ -68,36 +71,7 @@ public class Main : MonoBehaviour {
         longitude = Input.location.lastData.longitude;
 
         gpsText.text = "LAT: " + latitude.ToString() + Environment.NewLine + "LON: " + longitude.ToString();
-
-        if (Input.touchCount == 2)
-        {
-            // Store both touches.
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-
-            // Find the position in the previous frame of each touch.
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-            // Find the magnitude of the vector (the distance) between the touches in each frame.
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            // Find the difference in the distances between each frame.
-            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-
-            // ... change the canvas size based on the change in distance between the touches.
-            Images[currentMap].rectTransform.localScale -= Vector3.one * deltaMagnitudeDiff * zoomSpeed;
-
-            // Make sure the canvas size never drops below 0.1
-            if(Images[currentMap].rectTransform.localScale.magnitude < 1f)
-            {
-                Images[currentMap].rectTransform.localScale = Vector3.one;
-            }
-            if(Images[currentMap].rectTransform.localScale.magnitude > 5f){
-                Images[currentMap].rectTransform.localScale = new Vector3 (5f, 5f, 5f);
-            }
-        }
+    
     }
 
     void NextMap()

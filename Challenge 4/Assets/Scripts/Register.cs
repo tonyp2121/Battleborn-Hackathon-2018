@@ -28,78 +28,117 @@ public class Register : MonoBehaviour {
     }
 
 	public void RegisterButton(){
-		bool UN = false;
-		bool EM = false;
-		bool PW = false;
-		bool CPW = false;
+        if (!Debug.isDebugBuild)
+        {
+            bool UN = false;
+            bool EM = false;
+            bool PW = false;
+            bool CPW = false;
 
-		if (Username != ""){
-			if (!System.IO.File.Exists(@"C:/UnityTestFolder/"+Username+".txt")){
-				UN = true;
-			} else {
-				Debug.LogWarning("Username Taken");
-			}
-		} else {
-			Debug.LogWarning("Username field Empty");
-		}
-		if (Email != ""){
-			EmailValidation();
-			if (EmailValid){
-				if(Email.Contains("@")){
-					if(Email.Contains(".")){
-						EM = true;
-					} else {
-						Debug.LogWarning("Email is Incorrect");
-					}
-				} else {
-					Debug.LogWarning("Email is Incorrect");
-				}
-			} else {
-				Debug.LogWarning("Email is Incorrect");
-			}
-		} else {
-			Debug.LogWarning("Email Field Empty");
-		}
-		if (Password != ""){
-			if(Password.Length > 5){
-				PW = true;
-			} else {
-				Debug.LogWarning("Password Must Be atleast 6 Characters long");
-			}
-		} else {
-			Debug.LogWarning("Password Field Empty");
-		}
-		if (ConfPassword != ""){
-			if (ConfPassword == Password){
-				CPW = true;
-			} else {
-				Debug.LogWarning("Passwords Don't Match");
-			}
-		} else {
-			Debug.LogWarning("Confirm Password Field Empty");
-		}
-		if (UN == true&&EM == true&&PW == true&&CPW == true){
-			bool Clear = true;
-			int i = 1;
-			foreach(char c in Password){
-				if (Clear){
-					Password = "";
-					Clear = false;
-				}
-				i++;
-				char Encrypted = (char)(c * i);
-				Password += Encrypted.ToString();
-			}
-			form = (Username+Environment.NewLine+Email+Environment.NewLine+Password);
-			System.IO.File.WriteAllText(@"C:/UnityTestFolder/" + Username+".txt", form);
-			username.GetComponent<InputField>().text = "";
-			email.GetComponent<InputField>().text = "";
-			password.GetComponent<InputField>().text = "";
-			confPassword.GetComponent<InputField>().text = "";
-			print ("Registration Complete");
+            if (Username != "")
+            {
+                if (!System.IO.File.Exists(@"C:/UnityTestFolder/" + Username + ".txt"))
+                {
+                    UN = true;
+                }
+                else
+                {
+                    Debug.LogWarning("Username Taken");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Username field Empty");
+            }
+            if (Email != "")
+            {
+                EmailValidation();
+                if (EmailValid)
+                {
+                    if (Email.Contains("@"))
+                    {
+                        if (Email.Contains("."))
+                        {
+                            EM = true;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Email is Incorrect");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Email is Incorrect");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Email is Incorrect");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Email Field Empty");
+            }
+            if (Password != "")
+            {
+                if (Password.Length > 5)
+                {
+                    PW = true;
+                }
+                else
+                {
+                    Debug.LogWarning("Password Must Be atleast 6 Characters long");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Password Field Empty");
+            }
+            if (ConfPassword != "")
+            {
+                if (ConfPassword == Password)
+                {
+                    CPW = true;
+                }
+                else
+                {
+                    Debug.LogWarning("Passwords Don't Match");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Confirm Password Field Empty");
+            }
+            if (UN == true && EM == true && PW == true && CPW == true)
+            {
+                bool Clear = true;
+                int i = 1;
+                foreach (char c in Password)
+                {
+                    if (Clear)
+                    {
+                        Password = "";
+                        Clear = false;
+                    }
+                    i++;
+                    char Encrypted = (char)(c * i);
+                    Password += Encrypted.ToString();
+                }
+                form = (Username + Environment.NewLine + Email + Environment.NewLine + Password);
+                System.IO.File.WriteAllText(@"C:/UnityTestFolder/" + Username + ".txt", form);
+                username.GetComponent<InputField>().text = "";
+                email.GetComponent<InputField>().text = "";
+                password.GetComponent<InputField>().text = "";
+                confPassword.GetComponent<InputField>().text = "";
+                print("Registration Complete");
+                SceneManager.LoadScene(0);
+            }
+        }
+        else
+        {
             SceneManager.LoadScene(0);
-		}
-
+        }
 	}
 	
 	// Update is called once per frame
