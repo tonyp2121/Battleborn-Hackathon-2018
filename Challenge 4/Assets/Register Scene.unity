@@ -356,7 +356,7 @@ Prefab:
     - target: {fileID: 114460479908643148, guid: 944c0ad1e7bf02945a726afc38660625,
         type: 2}
       propertyPath: m_ScaleFactor
-      value: 2.26
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 224924156139647924, guid: 944c0ad1e7bf02945a726afc38660625,
         type: 2}
