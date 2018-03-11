@@ -154,7 +154,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.6, g: 0.8509804, b: 0.91764706, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -352,6 +352,51 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114460479908643148, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_ScaleFactor
+      value: 2.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 224924156139647924, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 220.52412
+      objectReference: {fileID: 0}
+    - target: {fileID: 224153509841449774, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.475887
+      objectReference: {fileID: 0}
+    - target: {fileID: 224130476845174060, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 108.52411
+      objectReference: {fileID: 0}
+    - target: {fileID: 224070405086574462, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -148.2759
+      objectReference: {fileID: 0}
+    - target: {fileID: 224660313764689172, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 24.191593
+      objectReference: {fileID: 0}
+    - target: {fileID: 224577845594566624, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 49.62411
+      objectReference: {fileID: 0}
+    - target: {fileID: 224603713228257318, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.47588
+      objectReference: {fileID: 0}
+    - target: {fileID: 224756830575661950, guid: 944c0ad1e7bf02945a726afc38660625,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 24.191593
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 944c0ad1e7bf02945a726afc38660625, type: 2}

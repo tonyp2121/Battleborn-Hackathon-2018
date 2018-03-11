@@ -154,7 +154,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.6, g: 0.8509804, b: 0.91764706, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -352,6 +352,46 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114005512494529114, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_ScaleFactor
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 224398741871800506, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 270.79993
+      objectReference: {fileID: 0}
+    - target: {fileID: 224007629267614660, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -98.85626
+      objectReference: {fileID: 0}
+    - target: {fileID: 224979798340034500, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 52.799942
+      objectReference: {fileID: 0}
+    - target: {fileID: 224114984455545390, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 202
+      objectReference: {fileID: 0}
+    - target: {fileID: 224642270907351924, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -98.85628
+      objectReference: {fileID: 0}
+    - target: {fileID: 224911469756451106, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 158.79994
+      objectReference: {fileID: 0}
+    - target: {fileID: 224478305152628892, guid: abaeb169d58f01f4493fec697417e829,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.200058
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abaeb169d58f01f4493fec697417e829, type: 2}
