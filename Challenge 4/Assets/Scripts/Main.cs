@@ -13,6 +13,8 @@ public class Main : MonoBehaviour {
     public float latitude;
     public float longitude;
 
+    public Text gpsText;
+
     public Image[] Images;
     public int imageCount = 12;
     public int currentMap = 0;
@@ -61,9 +63,11 @@ public class Main : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+        
         latitude = Input.location.lastData.latitude;
         longitude = Input.location.lastData.longitude;
+
+        gpsText.text = "LAT: " + latitude.ToString() + Environment.NewLine + "LON: " + longitude.ToString();
 
         if (Input.touchCount == 2)
         {
